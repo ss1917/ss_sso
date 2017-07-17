@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/astaxie/beego"
 	"ss_sso/common/utils"
 	"ss_sso/models"
@@ -60,7 +61,7 @@ func (this *LoginController) Post() {
 		models.UserUpdate(user)
 		token := sjwt.GenToken(user_info.Username, user.UserId, user.RegionId)
 		Domain := beego.AppConfig.String("domain")
-
+		fmt.Println(token)
 		if autologin {
 			this.Ctx.SetCookie("auth_key", token, 7*86400, "/", Domain)
 		} else {
