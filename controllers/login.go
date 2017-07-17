@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/astaxie/beego"
-	"ss_sso/common/utils"
-	"ss_sso/models"
+	"github.com/ss1917/ss_sso/common/utils"
+	"github.com/ss1917/ss_sso/models"
 	"time"
 )
 

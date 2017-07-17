@@ -8,7 +8,7 @@
 package routers
 
 import (
-	"ss_sso/controllers"
+	"github.com/ss1917/ss_sso/controllers"
 
 	"github.com/astaxie/beego"
 )

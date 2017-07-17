@@ -1,7 +1,7 @@
 package main
 
 import (
-	_ "ss_sso/routers"
+	_ "github.com/ss1917/ss_sso/routers"
 	_ "github.com/astaxie/beego/session/redis"
 	"github.com/astaxie/beego"
 )
