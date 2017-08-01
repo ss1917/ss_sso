@@ -31,6 +31,30 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
+	beego.GlobalControllerRouter["github.com/ss1917/ss_sso/controllers:PermissionVerifyController"] = append(beego.GlobalControllerRouter["github.com/ss1917/ss_sso/controllers:PermissionVerifyController"],
+		beego.ControllerComments{
+			Method: "Get",
+			Router: `/`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/ss1917/ss_sso/controllers:PermissionVerifyController"] = append(beego.GlobalControllerRouter["github.com/ss1917/ss_sso/controllers:PermissionVerifyController"],
+		beego.ControllerComments{
+			Method: "Post",
+			Router: `/`,
+			AllowHTTPMethods: []string{"post"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/ss1917/ss_sso/controllers:PermissionVerifyController"] = append(beego.GlobalControllerRouter["github.com/ss1917/ss_sso/controllers:PermissionVerifyController"],
+		beego.ControllerComments{
+			Method: "Put",
+			Router: `/`,
+			AllowHTTPMethods: []string{"put"},
+			MethodParams: param.Make(),
+			Params: nil})
+
 	beego.GlobalControllerRouter["github.com/ss1917/ss_sso/controllers:SsoController"] = append(beego.GlobalControllerRouter["github.com/ss1917/ss_sso/controllers:SsoController"],
 		beego.ControllerComments{
 			Method: "Get",

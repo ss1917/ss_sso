@@ -3,7 +3,7 @@ package controllers
 import (
 	//"fmt"
 	"github.com/astaxie/beego"
-	"github.com/ss1917/ss_sso/common/utils"
+	"github.com/ss1917/ss_sso/libs/utils"
 )
 
 type SsoController struct {
@@ -11,6 +11,7 @@ type SsoController struct {
 }
 
 func (this *SsoController) Prepare() {
+
 }
 
 // @router / [get]

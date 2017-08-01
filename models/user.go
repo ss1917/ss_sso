@@ -9,6 +9,7 @@ var (
 	Users map[string]*User
 )
 
+//Superuser = 6 为超级管理员
 type User struct {
 	UserId     int       `orm:"column(user_id);auto"`
 	RegionId   int       `orm:"column(region_id);null"`
@@ -20,7 +21,6 @@ type User struct {
 	Superuser  string    `orm:"column(superuser);size(2);"`
 	Nickname   string    `orm:"column(nickname);size(64);"`
 	Sex        string    `orm:"column(sex);size(10);null"`
-	Role       string    `orm:"column(role);size(200);null"`
 	LastIp     string    `orm:"column(lastip);size(20);null"`
 	Last_login time.Time `orm:"column(last_login);type(datetime);null"`
 	Wtime      time.Time `orm:"column(wtime);type(datetime);null"`
@@ -63,4 +63,10 @@ func (u *User) Update(fields ...string) error {
 func UserUpdate(user *User, fields ...string) error {
 	_, err := orm.NewOrm().Update(user, fields...)
 	return err
+}
+
+func CheckIsSuperuser(id int) (exist bool) {
+	u := new(User)
+	exist = orm.NewOrm().QueryTable(u).Filter("UserId", id).Filter("Superuser", "6").Exist()
+	return
 }

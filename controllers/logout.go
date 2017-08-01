@@ -8,6 +8,10 @@ type LogoutController struct {
 	beego.Controller
 }
 
+func (this *LogoutController) Prepare() {
+
+}
+
 // @router / [get]
 func (this *LogoutController) Get() {
 	this.Ctx.SetCookie("auth_key", "")

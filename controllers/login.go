@@ -4,19 +4,25 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/astaxie/beego"
-	"github.com/ss1917/ss_sso/common/utils"
+	"github.com/ss1917/ss_sso/libs/utils"
 	"github.com/ss1917/ss_sso/models"
 	"time"
+	"github.com/astaxie/beego/httplib"
+	"strconv"
 )
 
+// Operations about login
 type LoginController struct {
 	beego.Controller
 }
 
 func (this *LoginController) Prepare() {
-	this.EnableXSRF = false
 }
 
+// @Title get
+// @Description get login
+// @Success 200 "请求方式有误"
+// @Failure 403 body is empty
 // @router / [get]
 func (this *LoginController) Get() {
 	this.Data["json"] = map[string]interface{}{
@@ -27,6 +33,12 @@ func (this *LoginController) Get() {
 }
 
 // 登录
+// swagger:operation POST /v1/accounts/login
+// @Title user login
+// @Description login
+// @Param username        path    string  true        "the login"
+// @Success 200 {string}
+// @Failure 403 body is empty
 // @router / [post]
 func (this *LoginController) Post() {
 	//获取参数
@@ -67,6 +79,11 @@ func (this *LoginController) Post() {
 		} else {
 			this.Ctx.SetCookie("auth_key", token, 3600, "/", Domain)
 		}
+
+		req := httplib.Put(beego.AppConfig.String("verify_url"))
+		req.SetTimeout(1*time.Second, 1*time.Second)
+		req.Param("uid", strconv.Itoa(user.UserId))
+		req.String()
 
 		this.Data["json"] = map[string]interface{}{
 			"status": 0,

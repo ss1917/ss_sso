@@ -8,26 +8,35 @@
 package routers
 
 import (
-	"github.com/ss1917/ss_sso/controllers"
-
 	"github.com/astaxie/beego"
+	"github.com/ss1917/ss_sso/controllers"
 )
 
 func init() {
 	ns := beego.NewNamespace("/v1",
-		beego.NSNamespace("/accounts/login",
-			beego.NSInclude(
-				&controllers.LoginController{},
+		beego.NSNamespace("/accounts",
+			beego.NSNamespace("/login",
+				beego.NSInclude(
+					&controllers.LoginController{},
+				),
+			),
+			beego.NSNamespace("/logout",
+				beego.NSInclude(
+					&controllers.LogoutController{},
+				),
+			),
+			beego.NSNamespace("/sso",
+				beego.NSInclude(
+					&controllers.SsoController{},
+				),
 			),
 		),
-		beego.NSNamespace("/accounts/logout",
-			beego.NSInclude(
-				&controllers.LogoutController{},
-			),
-		),
-		beego.NSNamespace("/accounts/sso",
-			beego.NSInclude(
-				&controllers.SsoController{},
+
+		beego.NSNamespace("/rbac",
+			beego.NSNamespace("/verify",
+				beego.NSInclude(
+					&controllers.PermissionVerifyController{},
+				),
 			),
 		),
 	)

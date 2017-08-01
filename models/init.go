@@ -48,6 +48,7 @@ func DbInit() {
 	orm.RegisterDataBase("default", "mysql", conn)
 	conn_read := rdbUser + ":" + rdbPawd + "@tcp(" + rdbHost + ":" + rdbPort + ")/" + rdbName + "?charset=" + rdbCharset + "&loc=Local"
 	orm.RegisterDataBase("read", "mysql", conn_read)
-	orm.RegisterModelWithPrefix("login_", new(User))
-	orm.RunSyncdb("default", false, false)
+	orm.RegisterModelWithPrefix("login_", new(User), new(Role), new(UserRole), new(Function), new(RoleFunction))
+	//orm.RegisterModelWithPrefix("login_", new(Function))
+	//orm.RunSyncdb("default", true, false)
 }

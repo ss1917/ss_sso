@@ -1,9 +1,9 @@
 package main
 
 import (
-	_ "github.com/ss1917/ss_sso/routers"
-	_ "github.com/astaxie/beego/session/redis"
 	"github.com/astaxie/beego"
+	_ "github.com/astaxie/beego/session/redis"
+	_ "github.com/ss1917/ss_sso/routers"
 )
 
 func main() {
