@@ -4,11 +4,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/httplib"
 	"github.com/ss1917/ss_sso/libs/utils"
 	"github.com/ss1917/ss_sso/models"
-	"time"
-	"github.com/astaxie/beego/httplib"
 	"strconv"
+	"time"
 )
 
 // Operations about login
@@ -53,6 +53,7 @@ func (this *LoginController) Post() {
 	autologin := user_info.Autologin == "on"
 	//密码加密
 	newPass := sjwt.GenMD5(user_info.Password)
+	fmt.Println(newPass)
 	user, err := models.UserGetByName(user_info.Username)
 	if err != nil || user.Password != newPass {
 		this.Data["json"] = map[string]interface{}{
@@ -75,9 +76,9 @@ func (this *LoginController) Post() {
 		Domain := beego.AppConfig.String("domain")
 		fmt.Println(token)
 		if autologin {
-			this.Ctx.SetCookie("auth_key", token, 7*86400, "/", Domain)
+			this.Ctx.SetCookie("auth_key", token, 604800, "/", Domain)
 		} else {
-			this.Ctx.SetCookie("auth_key", token, 3600, "/", Domain)
+			this.Ctx.SetCookie("auth_key", token, 86400, "/", Domain)
 		}
 
 		req := httplib.Put(beego.AppConfig.String("verify_url"))
