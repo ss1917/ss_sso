@@ -1,12 +1,12 @@
 package controllers
 
 import (
+	"bytes"
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/logs"
+	"github.com/garyburd/redigo/redis"
 	"github.com/ss1917/ss_sso/models"
 	"strconv"
-	"github.com/garyburd/redigo/redis"
-	"github.com/astaxie/beego/logs"
-	"bytes"
 	"strings"
 )
 
@@ -33,11 +33,11 @@ func (this *PermissionVerifyController) Get() {
 // @router / [post]
 func (this *PermissionVerifyController) Post() {
 	uid := this.GetString("uid")
-	url := this.GetString("url")
+	uri := this.GetString("uri")
 	meth := this.GetString("meth")
 	//判断是否是超级管理员
 	if id, err := strconv.Atoi(uid); err == nil {
-		if models.CheckIsSuperuser(id){
+		if models.CheckIsSuperuser(id) {
 			this.Data["json"] = map[string]interface{}{
 				"status": 0,
 				"msg":    "is superuser",
@@ -60,7 +60,7 @@ func (this *PermissionVerifyController) Post() {
 	b.WriteString(meth)
 	v, _ := conn.Do("SMEMBERS", b.String())
 	for _, ve := range v.([]interface{}) {
-		if strings.HasPrefix(url,string(ve.([]byte)) ){
+		if strings.HasPrefix(uri, string(ve.([]byte))) {
 			this.Data["json"] = map[string]interface{}{
 				"status": 0,
 				"msg":    "success",
@@ -74,7 +74,7 @@ func (this *PermissionVerifyController) Post() {
 	c.WriteString("ALL")
 	v1, _ := conn.Do("SMEMBERS", c.String())
 	for _, ve := range v1.([]interface{}) {
-		if strings.HasPrefix(url,string(ve.([]byte)) ){
+		if strings.HasPrefix(uri, string(ve.([]byte))) {
 			this.Data["json"] = map[string]interface{}{
 				"status": 0,
 				"msg":    "success",

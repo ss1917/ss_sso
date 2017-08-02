@@ -83,7 +83,7 @@ Content-Disposition: form-data; name="uid"
 Content-Disposition: form-data; name="meth"
 GET
 
-Content-Disposition: form-data; name="url"
+Content-Disposition: form-data; name="uri"
 /mg/umg/role
 
 ``` 
