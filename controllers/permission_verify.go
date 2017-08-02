@@ -60,7 +60,7 @@ func (this *PermissionVerifyController) Post() {
 	b.WriteString(meth)
 	v, _ := conn.Do("SMEMBERS", b.String())
 	for _, ve := range v.([]interface{}) {
-		if strings.HasPrefix(uri, string(ve.([]byte))) {
+		if uri == string(ve.([]byte)) || strings.HasPrefix(uri, string(ve.([]byte))+"/") {
 			this.Data["json"] = map[string]interface{}{
 				"status": 0,
 				"msg":    "success",
@@ -68,13 +68,14 @@ func (this *PermissionVerifyController) Post() {
 			this.ServeJSON()
 		}
 	}
+
 	//ALL
 	c := bytes.Buffer{}
 	c.WriteString(uid)
 	c.WriteString("ALL")
 	v1, _ := conn.Do("SMEMBERS", c.String())
 	for _, ve := range v1.([]interface{}) {
-		if strings.HasPrefix(uri, string(ve.([]byte))) {
+		if uri == string(ve.([]byte)) || strings.HasPrefix(uri, string(ve.([]byte))+"/") {
 			this.Data["json"] = map[string]interface{}{
 				"status": 0,
 				"msg":    "success",
