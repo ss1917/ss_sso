@@ -5,7 +5,8 @@
   - **请求方式：** `POST` 
 
 ### 
-**输入参数：**
+**输入参数：**  
+
 | 参数名称    | 类型   | 是否必要 | 备注     |
 | --          | --     | --       | --       |
 | username    | string | 是       | 用户名   |
@@ -41,7 +42,8 @@
   - **请求方式：** `POST` 
 
 ### 
-**输入参数：**
+**输入参数：**  
+
 | 参数名称    | 类型   | 是否必要 | 备注     |
 | --          | --     | --       | --       |
 | auth_key    | string | 是       | token    |
@@ -62,7 +64,8 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNzcyIsInVzZXJpZCI6MiwicmV
   - **请求方式：** `POST` 
 
 ### 
-**输入参数：**
+**输入参数：**  
+
 | 参数名称    | 类型   | 是否必要 | 备注     |
 | --          | --     | --       | --       |
 | uid         | string |    是    | 用户id   | 
@@ -92,7 +95,8 @@ Content-Disposition: form-data; name="url"
   - **请求方式：** `PUT` 
 
 ### 
-**输入参数：**
+**输入参数：**  
+
 | 参数名称    | 类型   | 是否必要 | 备注     |
 | --          | --     | --       | --       |
 | uid         | string |    是    | 用户id   | 
